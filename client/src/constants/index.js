@@ -33,3 +33,5 @@ export const navlinks = [
     link: '/',
   },
 ];
+
+export const exploreCategories = ["Art", "Podcast", "Music", "Games", "Photography", "Video"];

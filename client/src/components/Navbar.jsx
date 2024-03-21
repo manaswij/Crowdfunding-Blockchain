@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { navlinks } from '../constants'
+import { useStateContext } from '../context'
 
 export default function Navbar() {
   const [isMenuVisisble, setIsMenuVisisble] = useState(false)
@@ -17,12 +18,13 @@ export default function Navbar() {
     </li>
   })
 
+  const { connectWallet, address, disconnect } = useStateContext()
 
   return (
     <header
       className='
-        relative p-4 flex 
-        md:p-0 md:border-r-2 md:border-stone-800
+        relative p-4 flex border-stone-800
+        md:p-0 md:border-r-2
         lg:w-60'
     >
       <button onClick={ () => { setIsMenuVisisble(true)} } className='md:hidden'>
@@ -38,12 +40,12 @@ export default function Navbar() {
       </div>
       
       <nav className={`
-        absolute top-0 left-0 w-full h-screen flex -translate-x-full transition-transform duration-300
+        absolute z-10 top-0 left-0 w-full h-screen flex -translate-x-full transition-transform duration-300
         ${isMenuVisisble ? "translate-x-0" : ""}
         md:static md:translate-x-0`
       }>
         <div className='
-          w-5/6 h-full bg-stone-900 flex flex-col
+          w-5/6 h-full bg-stone-900/[0.85] backdrop-blur-xl flex flex-col
           md:w-full'
         >
           <div className='flex justify-between items-center px-4 py-6'>
@@ -72,12 +74,22 @@ export default function Navbar() {
             <div>
               <p className='font-medium text-stone-100'>Leandro</p>
               <p className='text-sm	text-stone-500'>Creator</p>
+              { address == undefined ? (
+                <button
+                  onClick={() => {connectWallet()}}
+                >Connect wallet</button>
+              ) : (
+                <div>
+                  <p className='text-sm	text-stone-500'>{address}</p>
+                  <button onClick={() => {disconnect()}}>Disconnect wallet</button>
+                </div>
+              ) }
             </div>
           </Link>
         </div>
         <div 
           onClick={ () => { setIsMenuVisisble(false)} } 
-          className='w-1/6 h-full bg-stone-950/[0.65] backdrop-blur-3xl mix-blend-hue md:hidden' 
+          className='w-1/6 h-full backdrop-blur-3xl mix-blend-hue md:hidden' 
         ></div>
       </nav>
     </header>

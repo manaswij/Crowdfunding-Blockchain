@@ -12,7 +12,7 @@ body {
     background-color: rgb(12 10 9);
 
 }
-body::before {
+/* body::before {
     content: "";
     position: absolute;
     z-index: -1;
@@ -25,10 +25,16 @@ body::before {
     filter: blur(40px);
     opacity: 0.35;
     transform: translateX(-50%);
+} */
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 @media (768px <= width) {
     #root {
-        display: flex;
+        flex-direction: row;
     }
 }

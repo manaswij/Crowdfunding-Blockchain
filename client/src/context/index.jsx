@@ -1,27 +1,43 @@
 import React, { useContext, createContext } from 'react';
 
-import { useAddress, useContract, useMetamask, useContractWrite } from '@thirdweb-dev/react';
+import { useAddress, useContract, useConnect, metamaskWallet , useContractWrite, useDisconnect  } from '@thirdweb-dev/react';
 import { ethers } from 'ethers';
-import { EditionMetadataWithOwnerOutputSchema } from '@thirdweb-dev/sdk';
+/* import { EditionMetadataWithOwnerOutputSchema } from '@thirdweb-dev/sdk'; */
 
 const StateContext = createContext();
 
+const metamaskConfig = metamaskWallet();
+
 export const StateContextProvider = ({ children }) => {
-  const { contract } = useContract('0xf59A1f8251864e1c5a6bD64020e3569be27e6AA9');
+  // Contract address
+  const { contract } = useContract('0xE7e77fF24dffb5E6c528a87EEf5F51431b94717E');
+  // useContractWrite Hook para smart contracts donde se transacciona, retorna mutateAsync que renombrada a createCampaign
   const { mutateAsync: createCampaign } = useContractWrite(contract, 'createCampaign');
 
-  const address = useAddress();
-  const connect = useMetamask();
 
+  // Obtiene la direccion de la wallet que este conectada
+  const address = useAddress();
+  // Hook para conectar/desconectar wallet
+  const connect = useConnect();
+  const disconnect = useDisconnect()
+  // Funcion para conectar wallet
+  const connectWallet = async() => {
+    const wallet = await connect(metamaskConfig);
+    console.log("connected to ", wallet);
+  }
+
+
+  // Funcion para publicar la campaña en el smart contract
   const publishCampaign = async (form) => {
     try {
+      // Data que se enviara
       const data = await createCampaign({
 				args: [
-					address, // owner
-					form.title, // title
-					form.description, // description
+					address,
+					form.title,
+					form.description,
 					form.target,
-					new Date(form.deadline).getTime(), // deadline,
+					new Date(form.deadline).getTime(),
 					form.image,
 				],
 			});
@@ -32,7 +48,7 @@ export const StateContextProvider = ({ children }) => {
     }
   }
 
-  const getCampaigns = async () => {
+ /*  const getCampaigns = async () => {
     const campaigns = await contract.call('getCampaigns');
 
     const parsedCampaings = campaigns.map((campaign, i) => ({
@@ -77,7 +93,7 @@ export const StateContextProvider = ({ children }) => {
     }
 
     return parsedDonations;
-  }
+  } */
 
 
   return (
@@ -85,12 +101,13 @@ export const StateContextProvider = ({ children }) => {
       value={{ 
         address,
         contract,
-        connect,
         createCampaign: publishCampaign,
-        getCampaigns,
+        connectWallet,
+        disconnect,
+        /* getCampaigns,
         getUserCampaigns,
         donate,
-        getDonations
+        getDonations */
       }}
     >
       {children}
