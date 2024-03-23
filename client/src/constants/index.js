@@ -2,7 +2,7 @@ export const navlinks = [
   {
     name: 'Trending',
     icon: "/icons/trending.png",
-    link: '/',
+    link: '/trending',
   },
   {
     name: 'Find creators',
@@ -10,7 +10,7 @@ export const navlinks = [
     link: '/',
   },  
   {
-    name: 'Campaigns',
+    name: 'My Campaigns',
     icon: "/icons/campaign.png",
     link: '/campaigns',
     disabled: true,

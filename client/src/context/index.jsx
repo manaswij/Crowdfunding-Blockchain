@@ -1,5 +1,4 @@
 import React, { useContext, createContext } from 'react';
-
 import { useAddress, useContract, useConnect, metamaskWallet , useContractWrite, useDisconnect  } from '@thirdweb-dev/react';
 import { ethers } from 'ethers';
 /* import { EditionMetadataWithOwnerOutputSchema } from '@thirdweb-dev/sdk'; */
@@ -48,7 +47,7 @@ export const StateContextProvider = ({ children }) => {
     }
   }
 
- /*  const getCampaigns = async () => {
+  const getCampaigns = async () => {
     const campaigns = await contract.call('getCampaigns');
 
     const parsedCampaings = campaigns.map((campaign, i) => ({
@@ -93,7 +92,7 @@ export const StateContextProvider = ({ children }) => {
     }
 
     return parsedDonations;
-  } */
+  }
 
 
   return (
@@ -104,10 +103,10 @@ export const StateContextProvider = ({ children }) => {
         createCampaign: publishCampaign,
         connectWallet,
         disconnect,
-        /* getCampaigns,
+        getCampaigns,
         getUserCampaigns,
         donate,
-        getDonations */
+        getDonations
       }}
     >
       {children}

@@ -5,7 +5,7 @@ import { useStateContext } from '../context'
 import { ethers } from 'ethers'
 import {checkIfImage} from "../utils"
 
-export default function CreateCampaign() {
+export default function CreateCampaign(props) {
     const { createCampaign } = useStateContext()
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
@@ -95,6 +95,7 @@ export default function CreateCampaign() {
                         handleChange = {(e) => handleFormFieldsChange("image", e)}
                     />
                     <button type='submit'>Submit new campaign</button>
+                    <button type='button' onClick={() => {props.setVisible(false)}}>Close</button>
                 </form>
             </div>
         </div>
