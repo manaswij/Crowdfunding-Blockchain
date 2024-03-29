@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import FormField from './FormField'
 import { useStateContext } from '../context'
 import { ethers } from 'ethers'
 import {checkIfImage} from "../utils"
+import Loader from './Loader'
 
 export default function CreateCampaign(props) {
     const { createCampaign } = useStateContext()
-    const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
 
     const [form, setForm] = useState({
@@ -24,18 +23,18 @@ export default function CreateCampaign(props) {
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-
+        
         // revisa si la imagen existe
         checkIfImage(form.image, async(exist) => {
             if(exist) {
                 setIsLoading(true)
 
                 // envia datos de form y transforma ETH a wei
-                await createCampaign({...form, target: ethers.utils.parseUnits(form.target, 18)})
+                await createCampaign({...form, target: ethers.utils.parseUnits(form.target, 18)}) 
                 
                 setIsLoading(false)
-                navigate("/campaigns")
-                console.log(form);
+                props.setVisible(false)
+                window.location.reload(false);
             } else {
                 alert("Provide a valid image URL")
                 setForm({...form, image: ""})
@@ -44,14 +43,24 @@ export default function CreateCampaign(props) {
     }
 
     return (
-        <div className='
-            fixed top-0 left-0 z-10 w-full h-full p-4 backdrop-blur
-        '>
+        <div className='fixed top-0 left-0 z-30 w-full h-full p-4 flex items-center justify-center backdrop-blur overscroll-contain'>
+            {isLoading && <Loader />}
+
             <div className='
-                w-full max-w-3xl m-auto p-8 rounded-lg bg-[url("/images/bg-rocketlaunch.webp")] bg-no-repeat bg-cover
+                w-full max-w-xl h-full max-h-[750px] m-auto p-6 rounded-lg bg-stone-800 overflow-y-auto
             '>
-                <h2>Start a new campaign!</h2>
-                <form action="" onSubmit={handleSubmit}>
+                <div className='mb-4 flex items-center justify-between'>
+                    <h2 className='text-[20px] font-semibold'>Start a new campaign!</h2>
+                    <button 
+                        type='button' 
+                        onClick={() => {
+                            props.setVisible(false)
+                            document.body.style.overflow = "auto"
+                        }}>
+                        <img src="/icons/close.png" alt="close" width={"18px"} />
+                    </button>
+                </div>
+                <form onSubmit={handleSubmit}>
                     <FormField 
                         labelName = "Name"
                         placeholder = "Your creator's name"
@@ -82,8 +91,9 @@ export default function CreateCampaign(props) {
                     />
                     <FormField 
                         labelName = "End Date"
-                        placeholder = "dd/mm/yyyy"
+                        placeholder = ""
                         inputType = "date"
+                        min = {new Date().toISOString().split('T')[0]}
                         value = {form.deadline}
                         handleChange = {(e) => handleFormFieldsChange("deadline", e)}
                     />
@@ -94,8 +104,8 @@ export default function CreateCampaign(props) {
                         value = {form.image}
                         handleChange = {(e) => handleFormFieldsChange("image", e)}
                     />
-                    <button type='submit'>Submit new campaign</button>
-                    <button type='button' onClick={() => {props.setVisible(false)}}>Close</button>
+                    
+                    <button type='submit' className='mt-2 w-full btn-primary'>Submit new campaign</button>
                 </form>
             </div>
         </div>

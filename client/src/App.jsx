@@ -11,10 +11,10 @@ export default function Home() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={ <FindCreators /> } />
+        <Route path="/" element={ <TrendingCampaigns /> } />
+        <Route path="/explore" element={ <FindCreators /> } />
         <Route path="/campaigns" element={ <MyCampaigns /> } />
         <Route path="/profile" element={ <Profile /> } />
-        <Route path="/trending" element={ <TrendingCampaigns /> } />
       </Routes>
     </>
   );

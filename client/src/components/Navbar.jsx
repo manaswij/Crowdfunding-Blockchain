@@ -18,16 +18,20 @@ export default function Navbar() {
     </li>
   })
 
-  const { connectWallet, address, disconnect } = useStateContext()
+  const { connectWallet, address, disconnect, walletInstance } = useStateContext()
 
   return (
     <header
       className='
-        relative p-4 flex border-stone-800
-        md:p-0 md:border-r-2
-        lg:w-60'
+        relative z-20 p-4 flex border-stone-800 max-h-screen
+        md:p-0 md:border-r-2'
     >
-      <button onClick={ () => { setIsMenuVisisble(true)} } className='md:hidden'>
+      <button 
+        onClick={ () => { 
+          setIsMenuVisisble(true)
+          document.body.style.overflow = "hidden" 
+        }} 
+        className='md:hidden'>
         <img src="/icons/menu.png" alt="menu" />
       </button>
       <div className='grow md:hidden'>
@@ -42,17 +46,23 @@ export default function Navbar() {
       <nav className={`
         absolute z-10 top-0 left-0 w-full h-screen flex -translate-x-full transition-transform duration-300
         ${isMenuVisisble ? "translate-x-0" : ""}
-        md:static md:translate-x-0`
+        md:static md:translate-x-0 md:w-52
+        lg:w-60`
       }>
         <div className='
-          w-5/6 h-full bg-stone-900/[0.85] backdrop-blur-xl flex flex-col
+          w-5/6 max-w-96 h-full bg-stone-900 flex flex-col
           md:w-full'
-        >
+          >
           <div className='flex justify-between items-center px-4 py-6'>
             <Link to="/">
               <img src="/brand/p3.png" alt="logo" width={"24px"} />
             </Link>
-            <button onClick={ () => { setIsMenuVisisble(false)} } className='md:hidden' >
+            <button 
+              onClick={ () => { 
+                setIsMenuVisisble(false)
+                document.body.style.overflow = "auto"
+              }} 
+              className='md:hidden' >
               <img src="/icons/close.png" alt="menu" width={"18px"} />
             </button>
           </div>
@@ -61,35 +71,28 @@ export default function Navbar() {
             {links}
           </ul>
           
-          <Link 
-            to="/profile"
-            className='flex items-center gap-2 p-4 border-t-2 border-stone-800'
-          >
-            <img 
-              src="/images/avatar.png" 
-              alt="avatar" 
-              width={"48px"} 
-              className='sepia rounded-full border border-stone-300 animate-spin duration-300' 
-            />
-            <div>
-              <p className='font-medium text-stone-100'>Leandro</p>
-              <p className='text-sm	text-stone-500'>Creator</p>
-              { address == undefined ? (
-                <button
-                  onClick={() => {connectWallet()}}
-                >Connect wallet</button>
+          <div className='p-4 border-t-2 border-stone-800'>
+            { address == undefined ? (
+              <button onClick={() => {connectWallet()}} className='btn-secondary w-full'>Connect wallet</button>
               ) : (
+              <div className='flex flex-col gap-2'>
                 <div>
-                  <p className='text-sm	text-stone-500'>{address}</p>
-                  <button onClick={() => {disconnect()}}>Disconnect wallet</button>
+                  <p className='font-medium text-stone-100 capitalize'>{walletInstance.walletId}</p>
+                  <p className='text-sm	text-stone-500 break-all'>{address}</p>
                 </div>
-              ) }
+                <button onClick={() => {disconnect()}} className='btn-secondary'>Disconnect wallet</button>
+              </div>
+            ) }
+            <div>
             </div>
-          </Link>
+          </div>
         </div>
         <div 
-          onClick={ () => { setIsMenuVisisble(false)} } 
-          className='w-1/6 h-full backdrop-blur-3xl mix-blend-hue md:hidden' 
+          onClick={ () => { 
+            setIsMenuVisisble(false)
+            document.body.style.overflow = "auto"
+          }} 
+          className='w-1/6 h-full grow backdrop-blur md:hidden' 
         ></div>
       </nav>
     </header>

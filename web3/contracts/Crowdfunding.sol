@@ -28,7 +28,7 @@ contract Crowdfunding {
         uint256 _target,
         uint256 _deadline,
         string memory _image
-    ) public returns(uint256) {
+        ) public returns(uint256) {
         // Rellena el array de campaigns con objetos basados en el Campaign 
         Campaign storage campaign = campaigns[numberOfCampaigns];
 

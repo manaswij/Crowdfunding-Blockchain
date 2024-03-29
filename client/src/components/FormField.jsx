@@ -2,18 +2,18 @@ import React from 'react'
 
 export default function FormField(props) {        
     return (
-        <label className='flex flex-col'>
+        <label className='mb-2 flex flex-col'>
             {props.labelName && (
-                <span>{ props.labelName }</span>
+                <span className='mb-1 font-medium'>{ props.labelName }</span>
             )}
             {props.isTextArea ? (
                 <textarea 
                     required
                     value={props.value}
                     onChange={props.handleChange}
-                    rows="10" 
+                    rows="6" 
                     placeholder={props.placeholder}
-                    className='text-black'
+                    className='w-full p-4 bg-stone-900 rounded-2xl border border-stone-300 outline-0 focus:border-[#FB998C] placeholder:text-stone-600'
                 />
             ) : (
                 <input 
@@ -23,7 +23,8 @@ export default function FormField(props) {
                     type={props.inputType} 
                     placeholder={props.placeholder}
                     step={"0.1"}
-                    className='text-black'
+                    min={props.min}
+                    className='w-full h-10 px-4 bg-stone-900 rounded-full border border-stone-300 outline-0 focus:border-[#FB998C] placeholder:text-stone-600'
                 />
             )}
         </label>

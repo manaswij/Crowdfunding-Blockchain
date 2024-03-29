@@ -2,12 +2,12 @@ export const navlinks = [
   {
     name: 'Trending',
     icon: "/icons/trending.png",
-    link: '/trending',
+    link: '/',
   },
   {
     name: 'Find creators',
     icon: "/icons/search.png",
-    link: '/',
+    link: '/explore',
   },  
   {
     name: 'My Campaigns',

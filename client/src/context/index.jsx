@@ -1,5 +1,5 @@
 import React, { useContext, createContext } from 'react';
-import { useAddress, useContract, useConnect, metamaskWallet , useContractWrite, useDisconnect  } from '@thirdweb-dev/react';
+import { useAddress, useContract, useConnect, metamaskWallet , useContractWrite, useDisconnect, useWallet  } from '@thirdweb-dev/react';
 import { ethers } from 'ethers';
 /* import { EditionMetadataWithOwnerOutputSchema } from '@thirdweb-dev/sdk'; */
 
@@ -22,9 +22,9 @@ export const StateContextProvider = ({ children }) => {
   // Funcion para conectar wallet
   const connectWallet = async() => {
     const wallet = await connect(metamaskConfig);
-    console.log("connected to ", wallet);
   }
 
+  const walletInstance = useWallet()
 
   // Funcion para publicar la campaña en el smart contract
   const publishCampaign = async (form) => {
@@ -106,7 +106,8 @@ export const StateContextProvider = ({ children }) => {
         getCampaigns,
         getUserCampaigns,
         donate,
-        getDonations
+        getDonations,
+        walletInstance
       }}
     >
       {children}
