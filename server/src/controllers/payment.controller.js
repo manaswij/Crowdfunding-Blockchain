@@ -4,35 +4,27 @@ import { STRIPE_PRIVATE_KEY } from "../config.js"
 const stripe = new Stripe(STRIPE_PRIVATE_KEY)
 
 export const checkoutSession = async(req, res) => {
+    const {donations} = req.body
+    console.log(req.body);
+
+    const lineItems = donations.map((donation) => ({
+        price_data: {
+            currency: "usd",
+            product_data: {
+                name: donation.project,
+                description: `You are about to donate to the ${donation.author}'s project`,
+            },
+            unit_amount: Math.round(donation.amount * 100),
+        },
+        quantity: 1
+    }))
+
     const session = await stripe.checkout.sessions.create({
-        line_items: [
-            {
-                price_data: {
-                    product_data: {
-                        name: "Laptop",
-                        description: "Gaming Laptop",
-                    },
-                    currency: "usd",
-                    unit_amount: 10000,
-                },
-                quantity: 1
-            },
-            {
-                price_data: {
-                    product_data: {
-                        name: "TV",
-                        description: "Smart TV",
-                    },
-                    currency: "usd",
-                    unit_amount: 20000,
-                },
-                quantity: 2
-            },
-        ],
+        line_items: lineItems,
         mode: "payment",
         success_url: "http://localhost:3000/success",
         cancel_url: "http://localhost:3000/cancel",
     })
 
-    return res.json(session)
+    res.json({id: session.id})
 }
