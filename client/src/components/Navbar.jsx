@@ -29,7 +29,7 @@ export default function Navbar() {
 
   return (
     <header
-      className='shrink-0 relative z-20 p-4 flex max-h-screen md:p-2'>
+      className='shrink-0 sticky top-0 left-0 z-20 p-4 w-full max-h-screen flex backdrop-blur md:static md:p-2 md:w-auto'>
       <button 
         onClick={ () => { 
           setIsMenuVisisble(true)
@@ -48,7 +48,7 @@ export default function Navbar() {
       </div>
       
       <nav className={`
-        absolute z-10 top-0 left-0 w-full h-screen flex -translate-x-full transition-transform duration-300
+        absolute z-30 top-0 left-0 w-full h-screen flex -translate-x-full transition-transform duration-300
         ${isMenuVisisble ? "translate-x-0" : ""}
         md:static md:translate-x-0 md:w-auto md:h-full md:shadow-xl
         lg:w-max`

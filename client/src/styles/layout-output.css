@@ -590,6 +590,10 @@ video {
   position: relative;
 }
 
+.sticky {
+  position: sticky;
+}
+
 .bottom-0 {
   bottom: 0px;
 }
@@ -661,6 +665,10 @@ video {
 
 .mt-3 {
   margin-top: 0.75rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
 }
 
 .line-clamp-3 {
@@ -803,6 +811,11 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.rotate-90 {
+  --tw-rotate: 90deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .scale-x-0 {
   --tw-scale-x: 0;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -936,6 +949,21 @@ video {
   border-color: rgb(71 85 105 / var(--tw-border-opacity));
 }
 
+.border-\[\#37481E\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(55 72 30 / var(--tw-border-opacity));
+}
+
+.border-\[\#A6D95B\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(166 217 91 / var(--tw-border-opacity));
+}
+
+.border-\[\#6C8C3B\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(108 140 59 / var(--tw-border-opacity));
+}
+
 .bg-\[\#000000\]\/50 {
   background-color: rgb(0 0 0 / 0.5);
 }
@@ -981,6 +1009,14 @@ video {
 .bg-slate-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+}
+
+.bg-slate-800\/15 {
+  background-color: rgb(30 41 59 / 0.15);
+}
+
+.bg-slate-800\/25 {
+  background-color: rgb(30 41 59 / 0.25);
 }
 
 .object-cover {
@@ -1036,6 +1072,16 @@ video {
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .pl-10 {
@@ -1271,6 +1317,10 @@ video {
     width: 0px;
   }
 
+  .md\:w-2\/5 {
+    width: 40%;
+  }
+
   .md\:max-w-0 {
     max-width: 0px;
   }
@@ -1281,6 +1331,10 @@ video {
 
   .md\:max-w-full {
     max-width: 100%;
+  }
+
+  .md\:flex-auto {
+    flex: 1 1 auto;
   }
 
   .md\:translate-x-0 {
@@ -1432,5 +1486,9 @@ video {
 @media (min-width: 1280px) {
   .xl\:hidden {
     display: none;
+  }
+
+  .xl\:w-1\/4 {
+    width: 25%;
   }
 }

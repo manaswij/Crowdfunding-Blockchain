@@ -71,14 +71,32 @@ export default function CampaignDetails(props) {
     <>
       {isLoading && <Loader />}
 
-      <div 
+      <section 
         onClick={() => {props.setVisible(false)}}
-        className='absolute top-0 left-0 z-10 w-full h-full rounded-lg backdrop-blur overflow-clip'>
+        className='absolute top-0 left-0 z-10 w-full h-full flex flex-col rounded-lg bg-slate-800/35 backdrop-blur overflow-clip'>
+
+        <button 
+          onClick={() => {
+            props.setVisible(false)
+            document.body.style.overflow = "auto"
+          }}
+          className='w-full p-3 flex justify-center rounded-full transition-all hover:bg-slate-800'
+          >
+          <img 
+            src="/icons/chevron-right.png" 
+            alt="close" 
+            width={"18px"} 
+            height={"18px"}
+            className='rotate-90' 
+          />
+        </button>
 
         <div className='
-          max-h-full px-4 py-12 overflow-y-auto 
+          h-full max-h-full px-4 py-8 overflow-y-auto 
           md:static md:w-2/3 md:p-6'>
-          <div className='mb-12 p-2 flex flex-col gap-2 rounded-lg bg-slate-800/35  md:mb-4 md:p-4 md:flex-row md:border md:border-[#FB998C]'>
+          <div className='
+            mb-8 px-2 py-4 flex flex-col gap-2 rounded-lg border border-[#A6D95B]
+            md:mb-4 md:p-4 md:flex-row '>
             <div>
               <h3 className='text-[20px] font-semibold'>Donate</h3>
               <p className='text-sm text-slate-100 text-pretty'>Support this creator for no reward just because you believe in the project</p>
@@ -98,7 +116,9 @@ export default function CampaignDetails(props) {
           </div>
           {/* <button type='button' onClick={handleDonateWithFIAT} className='btn-primary' >Donate with FIAT</button> */}
 
-          <div className='mb-12 p-2 rounded-lg bg-slate-800/35 backdrop-blur md:mb-4 md:p-0'>
+          <div 
+            className='mb-8 px-2 py-4 rounded-lg bg-slate-800/25 
+            md:mb-4 md:p-0'>
             <h2 className='mb-4 text-[24px] font-semibold'>{props.campaign.title}</h2>
             
             <div className='mb-2 flex items-center gap-2'>
@@ -112,7 +132,9 @@ export default function CampaignDetails(props) {
             <p className='mb-4 text-slate-200'>{props.campaign.description}</p>
           </div>
 
-          <div className='mb-12 p-2 w-full flex gap-2 rounded-lg bg-slate-800/35 backdrop-blur md:mb-4 md:p-0 md:gap-4'>
+          <div 
+            className='mb-8 px-2 py-4 w-full flex gap-2 rounded-lg bg-slate-800/25
+            md:mb-4 md:p-0 md:gap-4'>
             <div className='p-2 flex flex-col items-center rounded-lg border border-slate-400 bg-slate-800/50 text-center'>
               <span className='text-[18px] font-bold text-slate-200'>{remainingDays}</span>
               <span className='text-sm text-slate-300'>Days left</span>
@@ -148,7 +170,9 @@ export default function CampaignDetails(props) {
           </div>
 
           {donators.length > 0 && (
-            <div className='mb-12 p-2 w-full flex gap-2 rounded-lg bg-slate-800/35 backdrop-blur md:mb-4 md:p-0'>
+            <div 
+              className='px-2 py-4 w-full flex gap-2 rounded-lg bg-slate-800/25
+              md:mb-4 md:p-0'>
               <ul className='p-2 flex flex-col items-center rounded-lg border border-slate-400 bg-slate-800/50'>
                 {donators.map(donation => {
                   return <li key={donators.indexOf(donation)} className='border-b border-slate-400 last-of-type:border-0'>
@@ -160,17 +184,7 @@ export default function CampaignDetails(props) {
             </div>
           )}
         </div>
-        
-        <button 
-          onClick={() => {
-            props.setVisible(false)
-            document.body.style.overflow = "auto"
-          }}
-          className='absolute z-10 top-0 right-0 m-1 p-3 rounded-full transition-all duration-300 hover:bg-slate-800'
-          >
-          <img src="/icons/close.png" alt="close" width={"18px"} />
-        </button>
-      </div>
+      </section>
     </>
   )
 }

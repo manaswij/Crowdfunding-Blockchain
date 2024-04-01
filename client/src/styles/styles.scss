@@ -143,10 +143,6 @@
     
     @media (768px <= width) {
         max-width: none;
-        width: 45%;
-        flex-basis: 45%;
-        flex-shrink: 1;
-        flex-grow: 1;
     }
     @media (992px <= width) {
         &:hover{
@@ -158,15 +154,6 @@
                 transform: scaleY(1);
             }
         }
-    }
-    @media (1280px <= width) {
-        width: 30%;
-        flex-basis: 30%;
-    }
-
-    /* Card Details */
-    &.CampaignCard--detail {
-    
     }
 }
 

@@ -7,8 +7,8 @@ export default function CampaignCard(props) {
   const remainingDays = daysLeft(props.deadline)
 
   return (
-    <div className='relative'>
-      <div
+    <div className='relative md:w-2/5 md:flex-auto xl:w-1/4'>
+      <section
         onClick={() => setIsDetailsVisible(true)}
         className='CampaignCard'>
         <img 
@@ -47,7 +47,7 @@ export default function CampaignCard(props) {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
 
       {isDetailsVisible ? <CampaignDetails setVisible={setIsDetailsVisible} campaign={props} /> : null}
