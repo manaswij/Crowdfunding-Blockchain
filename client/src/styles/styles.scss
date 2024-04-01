@@ -1,0 +1,246 @@
+@import "./variables.scss";
+
+/* -----------------BACKGROUND----------------- */
+.gradient-bg {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background: linear-gradient(40deg, $bg1, $bg2);
+
+    .gradients-container {
+        filter: url(#goo) blur(40px);
+        width: 100%;
+        height: 100%;
+    }
+    svg {
+        display: none;
+    }
+    .g {
+        position: absolute;
+        width: $circle-size;
+        height: $circle-size;
+        top: calc(50% - $circle-size / 2);
+        left: calc(50% - $circle-size / 2);
+        opacity: 1;
+        mix-blend-mode: $blending;        
+
+        &.g1 {
+            background: radial-gradient(circle at center, rgba($color1, 0.8) 0, rgba($color1, 0) 50%) no-repeat;
+            transform-origin: center center;
+            animation: moveVertical 30s ease infinite;
+        }
+        &.g2 {
+            background: radial-gradient(circle at center, rgba($color2, 0.8) 0, rgba($color2, 0) 50%) no-repeat;
+            transform-origin: calc(-50% - 400px);
+            animation: moveInCircle 20s reverse infinite;
+        }
+        &.g3 {
+            background: radial-gradient(circle at center, rgba($color3, 0.8) 0, rgba($color3, 0) 50%) no-repeat;
+            top: calc(50% - $circle-size / 2 + 200px);
+            left: calc(50% - $circle-size / 2 - 500px);
+            transform-origin: calc(50% + 400px);
+            animation: moveInCircle 40s linear infinite;
+        }
+        &.g4 {
+            background: radial-gradient(circle at center, rgba($color4, 0.8) 0, rgba($color4, 0) 50%) no-repeat;
+            opacity: 0.7;
+            transform-origin: calc(50% - 200px);
+            animation: moveHorizontal 40s ease infinite;
+        }
+        &.g5 {
+            background: radial-gradient(circle at center, rgba($color5, 0.8) 0, rgba($color5, 0) 50%) no-repeat;
+            top: calc(50% - $circle-size);
+            left: calc(50% - $circle-size);
+            transform-origin: calc(50% - 800px) calc(50% + 200px);
+            animation: moveInCircle 20s ease infinite;
+        }
+    }
+    .interactive {
+        position: fixed;
+        background: radial-gradient(circle at center, rgba($color-interactive, 0.8) 0, rgba($color-interactive, 0) 50%) no-repeat;
+        mix-blend-mode: $blending;
+        width: 150px;
+        height: 150px;
+        opacity: 0.7;
+    }
+}
+/* -----------------BACKGROUND----------------- */
+
+/* -----------------COMPONENTS----------------- */
+/* Buttons */
+.btn-primary {
+    padding: 0.75rem;
+    background-color: $main-400 !important;
+    border: 1px solid $main-300 !important;
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 300ms ease-in;
+    
+    &:hover {
+        background-color: $main-300 !important;
+    }
+}
+.btn-secondary {
+    padding: 0.75rem;
+    border: 1px solid $main-300;
+    border-radius: 0.5rem;
+    color: $main-300;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 300ms ease-in, color 150ms ease-in;
+    
+    &:hover {
+        background-color: #FBB2A935;
+        color: $main-400;
+    }
+}
+
+/* Loaders */
+.loader {
+    width: 300px;
+    height: 300px;
+
+    &::after, &::before {
+        position: absolute;
+        animation: loader 2s linear infinite;
+        content: "";
+        border: 2px solid #FBB2A9;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        transform: translateX(50%) translateY(-50%);
+    }
+    &::after {
+        opacity: 0;
+        animation-delay: 1s;
+    }
+}
+
+/* Cards */
+.CampaignCard {
+    position: relative;
+    width: 100%;
+    max-width: 18rem;
+    height: 500px;
+    display: flex;
+    align-items: flex-end;
+    border-radius: 0.5rem;
+    background-color: rgb(41 37 36);
+    cursor: pointer;
+    
+    .CampaignCard__description {
+        max-height: 0;
+        transform: scaleY(0);
+        transform-origin: bottom center;
+        transition: all 300ms ease-in-out;
+    }    
+    
+    @media (768px <= width) {
+        max-width: none;
+        width: 45%;
+        flex-basis: 45%;
+        flex-shrink: 1;
+        flex-grow: 1;
+    }
+    @media (992px <= width) {
+        &:hover{
+            .CampaignCard__heroimg {
+                opacity: 0.75;
+            }
+            .CampaignCard__description {
+                max-height: 60px;
+                transform: scaleY(1);
+            }
+        }
+    }
+    @media (1280px <= width) {
+        width: 30%;
+        flex-basis: 30%;
+    }
+
+    /* Card Details */
+    &.CampaignCard--detail {
+    
+    }
+}
+
+/* Nav */
+.nav__link {
+    @media (992px <= width) {
+        position: relative;
+        transition: all 150ms ease-in;
+        &:hover {
+            padding-top: 1.25rem;
+            padding-bottom: 1.25rem;
+            color: $main-100;
+        }
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border-radius: 0.5rem;
+            transition: background 150ms ease-in;
+            mix-blend-mode: darken;
+        }
+        &:hover:before {
+            background: $main-100;
+        }
+    }
+}
+/* -----------------COMPONENTS----------------- */
+
+/* -----------------ANIMACIONES----------------- */
+@keyframes loader {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+    to {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+@keyframes moveInCircle {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes moveVertical {
+    0% {
+        transform: translateY(-50%);
+    }
+    50% {
+        transform: translateY(50%);
+    }
+    100% {
+        transform: translateY(-50%);
+    }
+}
+@keyframes moveHorizontal {
+    0% {
+        transform: translateX(-50%);
+    }
+    50% {
+        transform: translateX(50%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+/* -----------------ANIMACIONES----------------- */

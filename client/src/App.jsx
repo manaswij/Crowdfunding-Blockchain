@@ -5,10 +5,12 @@ import MyCampaigns from "./pages/MyCampaigns";
 import Profile from "./pages/Profile";
 import "./styles/app.css";
 import TrendingCampaigns from "./pages/TrendingCampaigns";
+import GradientBG from "./components/GradientBG";
 
 export default function Home() {
   return (
     <>
+      <GradientBG />
       <Navbar />
       <Routes>
         <Route path="/" element={ <TrendingCampaigns /> } />

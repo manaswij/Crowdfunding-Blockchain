@@ -4,7 +4,7 @@ import { exploreCategories } from '../constants'
 export default function FindCreators() {
   const categories = exploreCategories.map(category => {
     return <li key={category}>
-      <button className='py-2 px-3 rounded-lg bg-stone-800 text-sm font-medium'>
+      <button className='py-2 px-3 rounded-lg bg-slate-800 text-sm font-medium'>
         {category}
       </button>
     </li>
@@ -18,7 +18,7 @@ export default function FindCreators() {
           <input 
             type="text"
             placeholder='Search creators or themes'
-            className='w-full h-10 pl-10 bg-stone-900 rounded-full border border-stone-300'
+            className='w-full h-10 pl-10 bg-slate-900 rounded-full border border-slate-300'
           />
           <img 
             src="/icons/search.png" 

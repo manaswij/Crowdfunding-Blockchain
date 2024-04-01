@@ -13,7 +13,7 @@ export default function FormField(props) {
                     onChange={props.handleChange}
                     rows="6" 
                     placeholder={props.placeholder}
-                    className='w-full p-4 bg-stone-900 rounded-2xl border border-stone-300 outline-0 focus:border-[#FB998C] placeholder:text-stone-600'
+                    className='w-full p-4 bg-slate-900 rounded-2xl border border-slate-300 outline-0 focus:border-[#FB998C] placeholder:text-slate-600'
                 />
             ) : (
                 <input 
@@ -24,7 +24,7 @@ export default function FormField(props) {
                     placeholder={props.placeholder}
                     step={"0.1"}
                     min={props.min}
-                    className='w-full h-10 px-4 bg-stone-900 rounded-full border border-stone-300 outline-0 focus:border-[#FB998C] placeholder:text-stone-600'
+                    className='w-full h-10 px-4 bg-slate-900 rounded-full border border-slate-300 outline-0 focus:border-[#FB998C] placeholder:text-slate-600'
                 />
             )}
         </label>

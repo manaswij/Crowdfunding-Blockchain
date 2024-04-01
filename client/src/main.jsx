@@ -6,6 +6,7 @@ import { ThirdwebProvider } from "@thirdweb-dev/react";
 import { Sepolia } from "@thirdweb-dev/chains";
 import { StateContextProvider } from "./context";
 import "./styles/layout-output.css";
+import "./styles/styles.scss";
 
 
 const container = document.getElementById("root");

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { gsap } from "gsap";
 import { useStateContext } from '../context'
 import CampaignCard from '../components/CampaignCard'
 import CreateCampaign from '../components/CreateCampaign'
@@ -28,6 +29,18 @@ export default function TrendingCampaigns() {
         fetchCampaigns()
         }
     }, [address, contract])
+
+    const cardSlots = campaigns.map(
+        (campaign) => <CampaignCard 
+            key={campaign.pId}
+            {...campaign}
+            handleClick={() => {
+                setIsDetailsVisible(true)
+                /* setCampaignInfo(campaign)  */
+                /* document.body.style.overflow = "hidden" */
+            }}
+        />
+    )
 
 
     return (
@@ -64,22 +77,12 @@ export default function TrendingCampaigns() {
                     </div>
                 )}
 
-                {!isLoading && campaigns.length > 0 && campaigns.map(
-                    (campaign) => <CampaignCard 
-                    key={campaign.pId}
-                    {...campaign}
-                    handleClick={() => {
-                        setIsDetailsVisible(true)
-                        setCampaignInfo(campaign) 
-                        document.body.style.overflow = "hidden"
-                    }}
-                    />
-                )}
+                {!isLoading && campaigns.length > 0 && cardSlots}
             </div>
 
             {/* MODALS */}
             {isCreateCampaignVisible ? <CreateCampaign setVisible={setIsCreateCampaignVisible} /> : null}
-            {isDetailsVisible ? <CampaignDetails setVisible={setIsDetailsVisible} campaign={campaignInfo} /> : null}
+            {/* {isDetailsVisible ? <CampaignDetails setVisible={setIsDetailsVisible} campaign={campaignInfo} /> : null} */}
         </main>
     )
 }

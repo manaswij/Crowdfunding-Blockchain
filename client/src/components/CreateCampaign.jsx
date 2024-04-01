@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import FormField from './FormField'
+import FormField from './elements/FormField'
 import { useStateContext } from '../context'
 import { ethers } from 'ethers'
 import {checkIfImage} from "../utils"
@@ -47,7 +47,7 @@ export default function CreateCampaign(props) {
             {isLoading && <Loader />}
 
             <div className='
-                w-full max-w-xl h-full max-h-[750px] m-auto p-6 rounded-lg bg-stone-800 overflow-y-auto
+                w-full max-w-xl h-full max-h-[750px] m-auto p-6 rounded-lg bg-slate-800 overflow-y-auto
             '>
                 <div className='mb-4 flex items-center justify-between'>
                     <h2 className='text-[20px] font-semibold'>Start a new campaign!</h2>

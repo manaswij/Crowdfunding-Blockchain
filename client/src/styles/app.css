@@ -1,32 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 /* -----------------LAYOUT----------------- */
-/* body {
-    --main-100: #FBB2A9;
-    --main-200: #FB998C;
-    --main-300: #F98171;
-    --main-400: #F86754;
-} */
-
-body {
-    background-color: rgb(12 10 9);
-
-}
-/* body::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 50%;
-    left: 50%;
-    width: 90vw;
-    height: 90vw;
-    border-radius: 50%;
-    background-color: #F86754;
-    filter: blur(40px);
-    opacity: 0.35;
-    transform: translateX(-50%);
-} */
-
 #root {
     display: flex;
     flex-direction: column;
@@ -40,65 +14,20 @@ body {
 }
 /* -----------------LAYOUT----------------- */
 
-/* -----------------COMPONENTS----------------- */
-/* Buttons */
-.btn-primary {
-    padding: 0.75rem;
-    background-color: #F98171 !important;
-    border: 1px solid #F98171 !important;
-    border-radius: 0.5rem;
-    color: white;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: background 300ms ease-in;
-}
-.btn-primary:hover {
-    background-color: #F86754 !important;
-}
-.btn-secondary {
-    padding: 0.75rem;
-    border: 1px solid #F98171;
-    border-radius: 0.5rem;
-    color: #F98171;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: background 300ms ease-in, color 150ms ease-in;
-}
-.btn-secondary:hover {
-    background-color: #FBB2A935;
-    color: #F86754;
-}
 
-/* Loaders */
-.loader {
-    width: 300px;
-    height: 300px;
-}
-.loader::after, .loader::before {
+/* .hero-img {
     position: absolute;
-    animation: loader 2s linear infinite;
-    content: "";
-    border: 2px solid #FBB2A9;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    transform: translateX(50%) translateY(-50%);
+    right: 4em;
+    bottom: 35%;
+    width: 600px;
+    height: 200px;
+    z-index: 100;
 }
-.loader::after {
-    opacity: 0;
-    animation-delay: 1s;
-}
-/* -----------------COMPONENTS----------------- */
-
-/* -----------------ANIMACIONES----------------- */
-@keyframes loader {
-    from {
-        transform: scale(0);
-        opacity: 1;
-    }
-    to {
-        transform: scale(1);
-        opacity: 0;
-    }
-}
-/* -----------------ANIMACIONES----------------- */
+.mask {
+    position: absolute;
+    width: 600px;
+    height: 200px;
+    background: url("/images/bg-rocketlaunch.webp") no-repeat 50% 50%;
+    background-size: cover;
+    z-index: 110;
+} */
