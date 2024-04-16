@@ -14,7 +14,7 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <ThirdwebProvider
-      clientId="d897f8b8a896ceb0b682f84f5cb44c9a"
+      clientId="3184a721560b0eceab081a3fa402b849"
       activeChain={Sepolia}
     >
       <BrowserRouter>

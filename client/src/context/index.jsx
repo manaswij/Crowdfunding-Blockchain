@@ -9,7 +9,7 @@ const metamaskConfig = metamaskWallet();
 
 export const StateContextProvider = ({ children }) => {
   // Contract address
-  const { contract } = useContract('0xE7e77fF24dffb5E6c528a87EEf5F51431b94717E');
+  const { contract } = useContract('0x4CBC262c1A2A23A6c3225114407d6b2417c4e299');
   // useContractWrite Hook para smart contracts donde se transacciona, retorna mutateAsync que renombrada a createCampaign
   const { mutateAsync: createCampaign } = useContractWrite(contract, 'createCampaign');
 

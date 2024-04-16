@@ -1,6 +1,6 @@
 export const navlinks = [
   {
-    name: 'Trending',
+    name: 'Home',
     icon: "/icons/trending.png",
     link: '/',
   },
@@ -15,23 +15,23 @@ export const navlinks = [
     link: '/campaigns',
     disabled: true,
   },
-  {
-    name: 'Comunity',
-    icon: "/icons/group.png",
-    link: '/',
-    disabled: true,
-  },
-  {
-    name: 'Notifications',
-    icon: "/icons/notifications.png",
-    link: '/',
-    disabled: true,
-  },
-  {
-    name: 'Configuration',
-    icon: "/icons/configuration.png",
-    link: '/',
-  },
+  // {
+  //   name: 'Comunity',
+  //   icon: "/icons/group.png",
+  //   link: '/',
+  //   disabled: true,
+  // },
+  // {
+  //   name: 'Notifications',
+  //   icon: "/icons/notifications.png",
+  //   link: '/',
+  //   disabled: true,
+  // },
+  // {
+  //   name: 'Configuration',
+  //   icon: "/icons/configuration.png",
+  //   link: '/',
+  // },
 ];
 
 export const exploreCategories = ["Art", "Podcast", "Music", "Games", "Photography", "Video"];
